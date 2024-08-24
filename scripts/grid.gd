@@ -17,6 +17,9 @@ func _process(delta):
 func set_dimensions(ncols, nrows):
 	cols = ncols
 	rows = nrows
+	
+func set_n_mines(nmines):
+	number_of_mines = nmines
 
 func clear_hover():
 	for atile in get_tree().get_nodes_in_group("tiles"):
@@ -77,6 +80,11 @@ func create_tiles():
 			new_instance.set_position(Vector2(j*16, i*16))
 			new_instance.add_to_group("tiles")
 			add_child(new_instance)
+			
+func delete_tiles():
+	# Remove all tile objects
+	for tile in get_tree().get_nodes_in_group("tiles"):
+		tile.queue_free()
 		
 func apply_distance(pos):
 	# After explosion is triggered, apply distance from explosion to all tiles

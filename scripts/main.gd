@@ -21,8 +21,11 @@ func _process(delta):
 			tile.hover_on()
 
 func _input(event):
-	if event.is_action_pressed("reset"):
+	if event.is_action_pressed("reset") and %GameManager.game_state == "playing":
 		%GameManager.reset()
+	elif event.is_action_pressed("go_back"):
+		if %GameManager.game_state == "playing":
+			%GameManager.go_to_main_menu()
 	elif event.is_action_pressed("secondary_click"):
 		var tile = get_clicked_tile(event.position)
 		if tile:
@@ -34,14 +37,15 @@ func _input(event):
 			hovering = false
 			# Player clicks on tile
 			var tile = get_clicked_tile(event.position)
-			if tile:
-				tile.hover_off()
+			if tile and not tile.cleared:
 				if not %GameManager.mines_placed:
 					$Grid.place_mines(get_clicked_tile(event.position, true))
 					%GameManager.mines_placed = true
 				tile.clicked_on()
+				check_win()
 				if tile.adjacent == "0" and not tile.mine:
 					recursive_clearing(get_clicked_tile(event.position, true))
+				
 					
 	elif event.is_action_pressed("primary_click"):
 		if %GameManager.game_state == "playing":
@@ -103,20 +107,22 @@ func get_clicked_tile(coords, index = false):
 					return tile
 
 func display_menu():
-	$MenuScreen.visible = true
+	$MainMenu.visible = true
 	
 func start_game():
 	%GameManager.game_state = "playing"
 	$Grid.set_dimensions(9,9)
 	$Grid.create_tiles()
-	$MenuScreen.visible = false
+	$MainMenu.visible = false
 	
 func _on_explosions():
+	$GameOver/AppearTimer.start()
 	$Camera2D.add_trauma(0.5)
 	var shake_factor = 0
 	for tile in get_tree().get_nodes_in_group("tiles"):
 		if not tile.flagged or tile.flagged and not tile.mine:
 			tile.find_child("TileTexture").visible = false
+			tile.cleared = true
 		if tile.flagged and not tile.mine:
 			tile.find_child("NumberTexture").visible = false
 			tile.find_child("FlagTexture").visible = false
@@ -131,10 +137,17 @@ func _on_explosions():
 			#$Camera2D.add_trauma(0.2)
 	#$Camera2D.shake()
 		
-
+func check_win():
+	# Check if player has won game
+	var covered_tiles = 0
+	for tile in get_tree().get_nodes_in_group("tiles"):
+		if not tile.cleared:
+			covered_tiles += 1
+	if $Grid.number_of_mines == covered_tiles:
+		%GameManager.win()
 
 func _on_recursive_timer_timeout():
-	if len(tiles_to_clear) > 0:
+	if len(tiles_to_clear) > 0 and $GameManager.game_state == "playing":
 		$RecursiveTimer.wait_time = randf_range(clearning_bounds.x, clearning_bounds.y)
 		var tile = tiles_to_clear.pop_at(randi()%len(tiles_to_clear))
 		if tile.adjacent == "0":
@@ -143,3 +156,4 @@ func _on_recursive_timer_timeout():
 		tile.clicked_on()
 	else:
 		$RecursiveTimer.stop()
+		check_win()

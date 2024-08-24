@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://pvrgrv7w5asj"]
+[gd_scene load_steps=8 format=3 uid="uid://pvrgrv7w5asj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_fwbb1"]
 [ext_resource type="PackedScene" uid="uid://kukoxby030re" path="res://scenes/grid.tscn" id="2_2ufes"]
 [ext_resource type="PackedScene" uid="uid://cgyqikrrva0oc" path="res://scenes/game_manager.tscn" id="2_hhs6u"]
 [ext_resource type="Script" path="res://scripts/camera_shake.gd" id="3_j7wsq"]
-[ext_resource type="Texture2D" uid="uid://7pocc5p7iy12" path="res://assets/images/titlescreen.png" id="3_jfulg"]
 [ext_resource type="Texture2D" uid="uid://cr1nj2oo7avbh" path="res://assets/images/win_screen.png" id="5_rm5ux"]
+[ext_resource type="PackedScene" uid="uid://7kunf6aab2ry" path="res://scenes/main_menu.tscn" id="7_iqnps"]
+[ext_resource type="PackedScene" uid="uid://bboe8oflrhla1" path="res://scenes/game_over.tscn" id="7_pcgwo"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_fwbb1")
@@ -21,17 +22,27 @@ script = ExtResource("3_j7wsq")
 position = Vector2(176, 32)
 scale = Vector2(4, 4)
 
-[node name="MenuScreen" type="TextureRect" parent="."]
-offset_right = 640.0
-offset_bottom = 360.0
-texture = ExtResource("3_jfulg")
+[node name="RecursiveTimer" type="Timer" parent="."]
+
+[node name="MainMenu" parent="." instance=ExtResource("7_iqnps")]
+scale = Vector2(4, 4)
 
 [node name="WinScreen" type="TextureRect" parent="."]
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+z_index = 49
+offset_right = 640.0
+offset_bottom = 360.0
 texture = ExtResource("5_rm5ux")
 
-[node name="RecursiveTimer" type="Timer" parent="."]
+[node name="GameOver" parent="." instance=ExtResource("7_pcgwo")]
+visible = false
+z_index = 50
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 160.0
+offset_bottom = 90.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="timeout" from="RecursiveTimer" to="." method="_on_recursive_timer_timeout"]
