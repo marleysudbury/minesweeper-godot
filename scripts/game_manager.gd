@@ -44,3 +44,5 @@ func go_to_main_menu():
 	clear_tiles()
 	game_state = "main_menu"
 	get_node("../../Main").display_menu()
+	get_node("../WinScreen").visible = false
+	get_node("../GameOver").visible = false
