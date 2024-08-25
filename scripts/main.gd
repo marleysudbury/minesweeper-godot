@@ -30,6 +30,9 @@ func _input(event):
 		var tile = get_clicked_tile(event.position)
 		if tile:
 			tile.toggle_flag()
+	elif event.is_action_pressed("primary_click"):
+		if %GameManager.game_state != "playing":
+			$ClickSound.play()
 	elif event.is_action_released("primary_click"):
 		if %GameManager.game_state == "playing":
 			hovering = false
@@ -40,6 +43,8 @@ func _input(event):
 					$Grid.place_mines(get_clicked_tile(event.position, true))
 					%GameManager.mines_placed = true
 				tile.clicked_on()
+				
+				$ClearSound.play()
 				check_win()
 				if tile.adjacent == "0" and not tile.mine:
 					recursive_clearing(get_clicked_tile(event.position, true))
@@ -115,6 +120,8 @@ func start_game():
 	$MainMenu.visible = false
 	
 func _on_explosions():
+	%GameManager.game_state = "lose"
+	$ExplosionSound.play()
 	$GameOver/AppearTimer.start()
 	$Camera2D.add_trauma(0.5)
 	var shake_factor = 0
@@ -153,6 +160,7 @@ func _on_recursive_timer_timeout():
 			var index = get_tree().get_nodes_in_group("tiles").find(tile)
 			recursive_clearing(index)
 		tile.clicked_on()
+		$ClearSound.play()
 	else:
 		$RecursiveTimer.stop()
 		check_win()

@@ -89,3 +89,4 @@ func _on_explosion_timer_timeout():
 	$ExplosionAnimation.play("small_explosion")
 	$ExplosionAnimation.visible = true
 	get_node("../../../Main/Camera2D").add_trauma(0.3)
+	get_node("../../../Main/ExplosionSound").play()

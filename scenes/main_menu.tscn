@@ -103,3 +103,4 @@ texture_normal = SubResource("AtlasTexture_ixbnl")
 texture_pressed = SubResource("AtlasTexture_x6w13")
 
 [connection signal="pressed" from="Control/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

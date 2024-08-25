@@ -16,3 +16,7 @@ func _process(delta: float) -> void:
 func _on_play_pressed() -> void:
 	if %GameManager.game_state == "main_menu":
 		%GameManager.start_game()
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()
