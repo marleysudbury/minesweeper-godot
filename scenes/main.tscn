@@ -22,9 +22,10 @@ script = ExtResource("3_j7wsq")
 position = Vector2(176, 32)
 scale = Vector2(4, 4)
 
-[node name="RecursiveTimer" type="Timer" parent="."]
-
 [node name="MainMenu" parent="." instance=ExtResource("7_iqnps")]
+anchors_preset = 0
+grow_horizontal = 1
+grow_vertical = 1
 scale = Vector2(4, 4)
 
 [node name="WinScreen" type="TextureRect" parent="."]
@@ -44,5 +45,7 @@ offset_right = 160.0
 offset_bottom = 90.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="RecursiveTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="RecursiveTimer" to="." method="_on_recursive_timer_timeout"]
