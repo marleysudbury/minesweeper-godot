@@ -10,20 +10,18 @@ func _ready():
 func _process(delta):
 	pass
 	
+	
+func stop_timer():
+	$AppearTimer.stop()
 
 
 func _on_appear_timer_timeout():
 	visible = true
 
-
-func _on_reset_button_up():
+func _on_reset_pressed() -> void:
 	visible = false
 	%GameManager.reset()
 
-
-func _on_exit_button_up():
+func _on_exit_pressed() -> void:
 	visible = false
 	%GameManager.go_to_main_menu()
-	
-func stop_timer():
-	$AppearTimer.stop()

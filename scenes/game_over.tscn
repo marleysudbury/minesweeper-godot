@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bboe8oflrhla1"]
+[gd_scene load_steps=7 format=3 uid="uid://bboe8oflrhla1"]
 
 [ext_resource type="Texture2D" uid="uid://bvj5u025oxsdm" path="res://assets/images/gameover.png" id="1_0swnj"]
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_rnep5"]
@@ -7,9 +7,17 @@
 atlas = ExtResource("1_0swnj")
 region = Rect2(0, 9, 58, 9)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ji5c"]
+atlas = ExtResource("1_0swnj")
+region = Rect2(0, 27, 58, 9)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ma2w"]
 atlas = ExtResource("1_0swnj")
 region = Rect2(0, 0, 58, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g6we"]
+atlas = ExtResource("1_0swnj")
+region = Rect2(0, 18, 58, 9)
 
 [node name="GameOver" type="MarginContainer"]
 anchors_preset = 15
@@ -37,15 +45,17 @@ theme_override_constants/separation = 1
 [node name="Reset" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_i3vhi")
+texture_pressed = SubResource("AtlasTexture_3ji5c")
 
 [node name="Exit" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_4ma2w")
+texture_pressed = SubResource("AtlasTexture_1g6we")
 
 [node name="AppearTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
-[connection signal="button_up" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="_on_reset_button_up"]
-[connection signal="button_up" from="CenterContainer/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_button_up"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="timeout" from="AppearTimer" to="." method="_on_appear_timer_timeout"]
