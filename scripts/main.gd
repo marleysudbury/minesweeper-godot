@@ -31,9 +31,7 @@ func _input(event):
 		if tile:
 			tile.toggle_flag()
 	elif event.is_action_released("primary_click"):
-		if %GameManager.game_state == "main_menu":
-			start_game()
-		elif %GameManager.game_state == "playing":
+		if %GameManager.game_state == "playing":
 			hovering = false
 			# Player clicks on tile
 			var tile = get_clicked_tile(event.position)
@@ -107,12 +105,13 @@ func get_clicked_tile(coords, index = false):
 					return tile
 
 func display_menu():
+	$MenuBackground.visible = true
 	$MainMenu.visible = true
 	
 func start_game():
-	%GameManager.game_state = "playing"
 	$Grid.set_dimensions(9,9)
 	$Grid.create_tiles()
+	$MenuBackground.visible = false
 	$MainMenu.visible = false
 	
 func _on_explosions():

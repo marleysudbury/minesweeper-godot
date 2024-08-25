@@ -46,3 +46,8 @@ func go_to_main_menu():
 	get_node("../../Main").display_menu()
 	get_node("../WinScreen").visible = false
 	get_node("../GameOver").visible = false
+	
+func start_game():
+	if %GameManager.game_state == "main_menu":
+		%GameManager.game_state = "playing"
+		get_node("../../Main").start_game()

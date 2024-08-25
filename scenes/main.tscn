@@ -19,32 +19,65 @@ anchor_mode = 0
 script = ExtResource("3_j7wsq")
 
 [node name="Grid" parent="." instance=ExtResource("2_2ufes")]
-position = Vector2(176, 32)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = -284.0
+offset_bottom = -288.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(4, 4)
 
+[node name="MenuBackground" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.411765, 0.309804, 0.384314, 1)
+
 [node name="MainMenu" parent="." instance=ExtResource("7_iqnps")]
-anchors_preset = 0
-grow_horizontal = 1
-grow_vertical = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -160.0
+offset_bottom = -90.0
 scale = Vector2(4, 4)
 
 [node name="WinScreen" type="TextureRect" parent="."]
 visible = false
 z_index = 49
-offset_right = 640.0
-offset_bottom = 360.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("5_rm5ux")
 
 [node name="GameOver" parent="." instance=ExtResource("7_pcgwo")]
 visible = false
 z_index = 50
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 160.0
-offset_bottom = 90.0
-grow_horizontal = 1
-grow_vertical = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -160.0
+offset_bottom = -90.0
 
 [node name="RecursiveTimer" type="Timer" parent="."]
 

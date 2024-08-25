@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 var cols = 3
 var rows = 3
 var number_of_mines = 10

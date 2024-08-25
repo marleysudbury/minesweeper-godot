@@ -11,3 +11,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_play_pressed() -> void:
+	if %GameManager.game_state == "main_menu":
+		%GameManager.start_game()
