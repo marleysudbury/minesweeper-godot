@@ -122,6 +122,7 @@ func start_game():
 func _on_explosions():
 	%GameManager.game_state = "lose"
 	$ExplosionSound.play()
+	$MusicManager/AnimationPlayer.play("Lose")
 	$GameOver/AppearTimer.start()
 	$Camera2D.add_trauma(0.5)
 	var shake_factor = 0
@@ -151,6 +152,7 @@ func check_win():
 			covered_tiles += 1
 	if $Grid.number_of_mines == covered_tiles:
 		%GameManager.win()
+		$MusicManager/AnimationPlayer.play("Win")
 
 func _on_recursive_timer_timeout():
 	if len(tiles_to_clear) > 0 and $GameManager.game_state == "playing":

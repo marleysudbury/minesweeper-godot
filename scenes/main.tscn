@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cr1nj2oo7avbh" path="res://assets/images/win_screen.png" id="5_rm5ux"]
 [ext_resource type="PackedScene" uid="uid://7kunf6aab2ry" path="res://scenes/main_menu.tscn" id="7_iqnps"]
 [ext_resource type="PackedScene" uid="uid://bboe8oflrhla1" path="res://scenes/game_over.tscn" id="7_pcgwo"]
-[ext_resource type="AudioStream" uid="uid://cu4fp6qqd04o6" path="res://assets/sounds/music.mp3" id="8_47tqs"]
 [ext_resource type="AudioStream" uid="uid://ciwkf2xkousa4" path="res://assets/sounds/blipSelect.wav" id="9_mc5gx"]
 [ext_resource type="AudioStream" uid="uid://cel1ry7qvq18g" path="res://assets/sounds/click.wav" id="10_e1lrd"]
+[ext_resource type="PackedScene" uid="uid://dehhu5my5yk02" path="res://scenes/music_manager.tscn" id="11_8xp4x"]
 [ext_resource type="AudioStream" uid="uid://ccuhtj41wsvw2" path="res://assets/sounds/explosion.wav" id="11_npotk"]
 
 [node name="Main" type="Node"]
@@ -85,11 +85,6 @@ offset_bottom = -90.0
 
 [node name="RecursiveTimer" type="Timer" parent="."]
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_47tqs")
-volume_db = -16.0
-autoplay = true
-
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_mc5gx")
 volume_db = -5.0
@@ -104,5 +99,7 @@ max_polyphony = 20
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_npotk")
 max_polyphony = 20
+
+[node name="MusicManager" parent="." instance=ExtResource("11_8xp4x")]
 
 [connection signal="timeout" from="RecursiveTimer" to="." method="_on_recursive_timer_timeout"]

@@ -1,0 +1,126 @@
+[gd_scene load_steps=8 format=3 uid="uid://dehhu5my5yk02"]
+
+[ext_resource type="AudioStream" uid="uid://cu4fp6qqd04o6" path="res://assets/sounds/music.mp3" id="1_hjbeq"]
+[ext_resource type="AudioStream" uid="uid://brgpjltye3iok" path="res://assets/sounds/win.mp3" id="2_vb5u8"]
+[ext_resource type="AudioStream" uid="uid://cme0lbovib45r" path="res://assets/sounds/lose.mp3" id="3_3mnr4"]
+
+[sub_resource type="Animation" id="Animation_0gy8x"]
+resource_name = "Win"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundMusic:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 5),
+"transitions": PackedFloat32Array(1, 5.27803, 1, 5.65685),
+"update": 0,
+"values": [-16.0, -80.0, -80.0, -16.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WinMusic:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_x0xm2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundMusic:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-16.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WinMusic:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LoseMusic:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3rlwr"]
+resource_name = "Lose"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundMusic:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.03333, 3.03333, 7, 9),
+"transitions": PackedFloat32Array(1, 5.27803, 1, 5.65685),
+"update": 0,
+"values": [-16.0, -80.0, -80.0, -16.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoseMusic:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 2.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c7jak"]
+_data = {
+"Lose": SubResource("Animation_3rlwr"),
+"RESET": SubResource("Animation_x0xm2"),
+"Win": SubResource("Animation_0gy8x")
+}
+
+[node name="MusicManager" type="Node"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_hjbeq")
+volume_db = -16.0
+autoplay = true
+
+[node name="WinMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vb5u8")
+volume_db = -5.0
+
+[node name="LoseMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3mnr4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c7jak")
+}
