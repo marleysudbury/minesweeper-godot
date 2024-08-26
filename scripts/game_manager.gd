@@ -41,13 +41,24 @@ func clear_tiles():
 		tile.queue_free()
 	
 func go_to_main_menu():
-	clear_tiles()
 	game_state = "main_menu"
 	get_node("../../Main").display_menu()
 	get_node("../WinScreen").visible = false
 	get_node("../GameOver").visible = false
 	
-func start_game():
-	if %GameManager.game_state == "main_menu":
-		%GameManager.game_state = "playing"
+func open_game_menu():
+	# Choose difficulty level
+	clear_tiles()
+	%GameManager.game_state = "game_menu"
+	get_node("../MenuBackground").visible = true
+	get_node("../GameMenu").visible = true
+	get_node("../MainMenu").visible = false
+		
+func start_game(mode):
+	game_state = "playing"
+	if mode == "EASY":
+		get_node("../Grid").scale = Vector2(2.0, 2.0)
+		get_node("../../Main").start_game()
+	if mode == "MEDIUM":
+		get_node("../Grid").scale = Vector2(1.0, 1.0)
 		get_node("../../Main").start_game()

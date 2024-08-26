@@ -24,7 +24,11 @@ func _input(event):
 	if event.is_action_pressed("reset") and %GameManager.game_state == "playing":
 		%GameManager.reset()
 	elif event.is_action_pressed("go_back"):
-		if %GameManager.game_state == "playing":
+		if %GameManager.game_state == "main_menu" and not OS.has_feature("web"):
+			get_tree().quit()
+		elif %GameManager.game_state == "playing":
+			%GameManager.open_game_menu()
+		elif %GameManager.game_state == "game_menu":
 			%GameManager.go_to_main_menu()
 	elif event.is_action_pressed("secondary_click"):
 		var tile = get_clicked_tile(event.position)
@@ -117,7 +121,7 @@ func start_game():
 	$Grid.set_dimensions(9,9)
 	$Grid.create_tiles()
 	$MenuBackground.visible = false
-	$MainMenu.visible = false
+	$GameMenu.visible = false
 	
 func _on_explosions():
 	%GameManager.game_state = "lose"
