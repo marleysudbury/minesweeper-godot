@@ -119,6 +119,7 @@ func start_game():
 	$Grid.create_tiles()
 	$MenuBackground.visible = false
 	$GameMenu.visible = false
+	$CustomGameMenu.visible = false
 	
 func _on_explosions():
 	%GameManager.game_state = "lose"

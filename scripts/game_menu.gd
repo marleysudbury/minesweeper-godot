@@ -24,4 +24,4 @@ func _on_hard_pressed() -> void:
 
 
 func _on_custom_pressed() -> void:
-	pass # Replace with function body.
+	%GameManager.start_game("CUSTOM")

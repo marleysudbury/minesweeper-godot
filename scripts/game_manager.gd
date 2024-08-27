@@ -52,6 +52,7 @@ func open_game_menu():
 	%GameManager.game_state = "game_menu"
 	get_node("../MenuBackground").visible = true
 	get_node("../GameMenu").visible = true
+	get_node("../CustomGameMenu").visible = true
 	get_node("../MainMenu").visible = false
 		
 func start_game(mode):
@@ -79,6 +80,14 @@ func start_game(mode):
 		cols = 30
 		mines = 99
 		scale_factor = 1.0
+	elif mode == "CUSTOM":
+		rows = int(get_node("../CustomGameMenu/TextBoxes/RowText").text)
+		cols = int(get_node("../CustomGameMenu/TextBoxes/ColText").text)
+		mines = int(get_node("../CustomGameMenu/TextBoxes/MineText").text)
+		scale_factor = 1.0
+		if rows < 9 or rows > 16 or cols < 9 or cols > 16 or mines < 1 or mines > rows*cols-1:
+			open_game_menu()
+			return
 	
 	grid.position = Vector2(centre_point.x - cols*16*scale_factor/2, centre_point.y - rows*16*scale_factor/2)
 	grid.scale = Vector2(scale_factor, scale_factor)
