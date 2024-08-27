@@ -56,9 +56,32 @@ func open_game_menu():
 		
 func start_game(mode):
 	game_state = "playing"
+	var grid = get_node("../Grid")
+	var main = get_node("../../Main")
+	var rows
+	var cols
+	var mines
+	var scale_factor
+	var window_size = get_viewport().get_visible_rect().size
+	var centre_point = Vector2(window_size.x/2, window_size.y/2)
 	if mode == "EASY":
-		get_node("../Grid").scale = Vector2(2.0, 2.0)
-		get_node("../../Main").start_game()
-	if mode == "MEDIUM":
-		get_node("../Grid").scale = Vector2(1.0, 1.0)
-		get_node("../../Main").start_game()
+		rows = 9
+		cols = 9
+		mines = 10
+		scale_factor = 2.0
+	elif mode == "MEDIUM":
+		rows = 16
+		cols = 16
+		mines = 40
+		scale_factor = 1.0
+	elif mode == "HARD":
+		rows = 16
+		cols = 30
+		mines = 99
+		scale_factor = 1.0
+	
+	grid.position = Vector2(centre_point.x - cols*16*scale_factor/2, centre_point.y - rows*16*scale_factor/2)
+	grid.scale = Vector2(scale_factor, scale_factor)
+	grid.set_dimensions(cols, rows)
+	grid.set_n_mines(mines)
+	main.start_game()

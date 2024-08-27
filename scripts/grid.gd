@@ -34,16 +34,16 @@ func place_mines(first_click):
 		var x = randi()%cols
 		var y = randi()%rows
 		var coord = Vector2(x, y)
-		if coord not in mine_allocations and x*cols+y != first_click:
+		if coord not in mine_allocations and x+y*cols != first_click:
 			mine_allocations.push_back(coord)
-			tiles[x*cols+y].mine = true
-			tiles[x*cols+y].update_tile()
+			tiles[x+y*cols].mine = true
+			tiles[x+y*cols].update_tile()
 			mines_allocated += 1
 	
 	for i in len(tiles):
 		var adjacent_mines = 0
 		var row = i / cols
-		var col = i % rows
+		var col = i % cols
 		if not tiles[i].mine:
 			# Top left
 			if row > 0 and col > 0:
@@ -74,8 +74,8 @@ func place_mines(first_click):
 
 func create_tiles():
 	# Initiate tiles in grid
-	for i in cols:
-		for j in rows:
+	for i in rows:
+		for j in cols:
 			var new_instance = tile.instantiate()
 			new_instance.set_position(Vector2(j*16, i*16))
 			new_instance.add_to_group("tiles")

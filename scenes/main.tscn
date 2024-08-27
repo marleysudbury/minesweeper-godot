@@ -24,13 +24,11 @@ anchor_mode = 0
 script = ExtResource("3_j7wsq")
 
 [node name="Grid" parent="." instance=ExtResource("2_2ufes")]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_right = -284.0
-offset_bottom = -288.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
