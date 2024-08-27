@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://pvrgrv7w5asj"]
+[gd_scene load_steps=14 format=3 uid="uid://pvrgrv7w5asj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_fwbb1"]
 [ext_resource type="PackedScene" uid="uid://kukoxby030re" path="res://scenes/grid.tscn" id="2_2ufes"]
 [ext_resource type="PackedScene" uid="uid://cgyqikrrva0oc" path="res://scenes/game_manager.tscn" id="2_hhs6u"]
 [ext_resource type="Script" path="res://scripts/camera_shake.gd" id="3_j7wsq"]
 [ext_resource type="Texture2D" uid="uid://cr1nj2oo7avbh" path="res://assets/images/win_screen.png" id="5_rm5ux"]
+[ext_resource type="PackedScene" uid="uid://1ovx42mdaudq" path="res://scenes/custom_game_menu.tscn" id="6_dxa2y"]
+[ext_resource type="PackedScene" uid="uid://cobnv60ocyo2m" path="res://scenes/game_menu.tscn" id="6_hj6cu"]
 [ext_resource type="PackedScene" uid="uid://7kunf6aab2ry" path="res://scenes/main_menu.tscn" id="7_iqnps"]
 [ext_resource type="PackedScene" uid="uid://bboe8oflrhla1" path="res://scenes/game_over.tscn" id="7_pcgwo"]
 [ext_resource type="AudioStream" uid="uid://ciwkf2xkousa4" path="res://assets/sounds/blipSelect.wav" id="9_mc5gx"]
@@ -23,13 +25,11 @@ anchor_mode = 0
 script = ExtResource("3_j7wsq")
 
 [node name="Grid" parent="." instance=ExtResource("2_2ufes")]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_right = -284.0
-offset_bottom = -288.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
@@ -41,6 +41,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.411765, 0.309804, 0.384314, 1)
+
+[node name="GameMenu" parent="." instance=ExtResource("6_hj6cu")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -20.0
+offset_right = -16.0
+offset_bottom = -20.0
+scale = Vector2(4, 4)
+
+[node name="CustomGameMenu" parent="." instance=ExtResource("6_dxa2y")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 85.0
+offset_top = -80.0
+offset_right = 85.0
+offset_bottom = -80.0
 
 [node name="MainMenu" parent="." instance=ExtResource("7_iqnps")]
 anchors_preset = -1

@@ -14,8 +14,7 @@ func _process(delta: float) -> void:
 
 
 func _on_play_pressed() -> void:
-	if %GameManager.game_state == "main_menu":
-		%GameManager.start_game()
+	%GameManager.open_game_menu()
 
 
 func _on_exit_pressed() -> void:

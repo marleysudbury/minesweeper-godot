@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://cobnv60ocyo2m"]
+
+[ext_resource type="Script" path="res://scripts/game_menu.gd" id="1_klfak"]
+[ext_resource type="Texture2D" uid="uid://dabnmjvktp8ih" path="res://assets/images/game_menu.png" id="1_qfa0v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn3vw"]
+atlas = ExtResource("1_qfa0v")
+region = Rect2(0, 0, 31, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsdpq"]
+atlas = ExtResource("1_qfa0v")
+region = Rect2(0, 36, 31, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asvv6"]
+atlas = ExtResource("1_qfa0v")
+region = Rect2(0, 9, 31, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb68e"]
+atlas = ExtResource("1_qfa0v")
+region = Rect2(0, 45, 31, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7odk4"]
+atlas = ExtResource("1_qfa0v")
+region = Rect2(0, 18, 31, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5dm1"]
+atlas = ExtResource("1_qfa0v")
+region = Rect2(0, 54, 31, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1c6a"]
+atlas = ExtResource("1_qfa0v")
+region = Rect2(0, 27, 31, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b64qw"]
+atlas = ExtResource("1_qfa0v")
+region = Rect2(0, 63, 31, 9)
+
+[node name="GameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1249.0
+offset_bottom = -681.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15.5, 19.5)
+script = ExtResource("1_klfak")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 31.0
+offset_bottom = 39.0
+theme_override_constants/separation = 1
+
+[node name="Easy" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_bn3vw")
+texture_pressed = SubResource("AtlasTexture_rsdpq")
+
+[node name="Medium" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_asvv6")
+texture_pressed = SubResource("AtlasTexture_tb68e")
+
+[node name="Hard" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7odk4")
+texture_pressed = SubResource("AtlasTexture_f5dm1")
+
+[node name="Custom" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_s1c6a")
+texture_pressed = SubResource("AtlasTexture_b64qw")
+
+[connection signal="pressed" from="VBoxContainer/Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="VBoxContainer/Medium" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="VBoxContainer/Hard" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="VBoxContainer/Custom" to="." method="_on_custom_pressed"]

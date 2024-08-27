@@ -24,15 +24,16 @@ func _input(event):
 	if event.is_action_pressed("reset") and %GameManager.game_state == "playing":
 		%GameManager.reset()
 	elif event.is_action_pressed("go_back"):
-		if %GameManager.game_state == "playing":
+		if %GameManager.game_state == "main_menu" and not OS.has_feature("web"):
+			get_tree().quit()
+		elif %GameManager.game_state == "playing":
+			%GameManager.open_game_menu()
+		elif %GameManager.game_state == "game_menu":
 			%GameManager.go_to_main_menu()
 	elif event.is_action_pressed("secondary_click"):
 		var tile = get_clicked_tile(event.position)
 		if tile:
 			tile.toggle_flag()
-	elif event.is_action_pressed("primary_click"):
-		if %GameManager.game_state != "playing":
-			$ClickSound.play()
 	elif event.is_action_released("primary_click"):
 		if %GameManager.game_state == "playing":
 			hovering = false
@@ -48,11 +49,11 @@ func _input(event):
 				check_win()
 				if tile.adjacent == "0" and not tile.mine:
 					recursive_clearing(get_clicked_tile(event.position, true))
-				
-					
 	elif event.is_action_pressed("primary_click"):
 		if %GameManager.game_state == "playing":
 			hovering = true
+		else:
+			$ClickSound.play()
 			
 func recursive_clearing(index):
 	if $RecursiveTimer.is_stopped():
@@ -64,7 +65,7 @@ func recursive_clearing(index):
 	var cols = $Grid.cols
 	var tiles = get_tree().get_nodes_in_group("tiles")
 	var row = index / cols
-	var col = index % rows
+	var col = index % cols
 	# Top left
 	if row > 0 and col > 0:
 		if not tiles[i-cols-1].cleared and not tiles[i-cols-1].mine:
@@ -100,8 +101,8 @@ func recursive_clearing(index):
 
 func get_clicked_tile(coords, index = false):
 	for tile in get_tree().get_nodes_in_group("tiles"):
-			var x_diff = (coords.x - $Grid.position.x) / tile_scale - tile.position.x
-			var y_diff = (coords.y - $Grid.position.y) / tile_scale - tile.position.y
+			var x_diff = (coords.x - $Grid.position.x) / $Grid.scale.x - tile.position.x
+			var y_diff = (coords.y - $Grid.position.y) / $Grid.scale.y - tile.position.y
 			
 			if 0 <= x_diff and x_diff < 16 and 0 <= y_diff and y_diff < 16:
 				if index:
@@ -114,10 +115,11 @@ func display_menu():
 	$MainMenu.visible = true
 	
 func start_game():
-	$Grid.set_dimensions(9,9)
+	#$Grid.set_dimensions(9,9)
 	$Grid.create_tiles()
 	$MenuBackground.visible = false
-	$MainMenu.visible = false
+	$GameMenu.visible = false
+	$CustomGameMenu.visible = false
 	
 func _on_explosions():
 	%GameManager.game_state = "lose"
