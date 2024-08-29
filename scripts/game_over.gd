@@ -18,9 +18,11 @@ func stop_timer():
 func _on_appear_timer_timeout():
 	visible = true
 
+
 func _on_reset_pressed() -> void:
 	visible = false
 	%GameManager.reset()
+
 
 func _on_exit_pressed() -> void:
 	visible = false

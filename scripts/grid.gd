@@ -1,8 +1,10 @@
 extends Control
+
 var cols = 3
 var rows = 3
 var number_of_mines = 10
 var tile = preload("res://scenes/tile.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,13 +19,16 @@ func _process(delta):
 func set_dimensions(ncols, nrows):
 	cols = ncols
 	rows = nrows
-	
+
+
 func set_n_mines(nmines):
 	number_of_mines = nmines
+
 
 func clear_hover():
 	for atile in get_tree().get_nodes_in_group("tiles"):
 		atile.hover_off()
+
 
 func place_mines(first_click):
 	# Select which tiles will have mines
@@ -72,6 +77,7 @@ func place_mines(first_click):
 			
 			tiles[i].update_adjacent(adjacent_mines)
 
+
 func create_tiles():
 	# Initiate tiles in grid
 	for i in rows:
@@ -80,16 +86,15 @@ func create_tiles():
 			new_instance.set_position(Vector2(j*16, i*16))
 			new_instance.add_to_group("tiles")
 			add_child(new_instance)
-			
+
+
 func delete_tiles():
 	# Remove all tile objects
 	for tile in get_tree().get_nodes_in_group("tiles"):
 		tile.queue_free()
-		
+
+
 func apply_distance(pos):
 	# After explosion is triggered, apply distance from explosion to all tiles
 	for atile in get_tree().get_nodes_in_group("tiles"):
 		atile.set_distance_from_explosion(atile.position.distance_to(pos))
-		
-	
-		

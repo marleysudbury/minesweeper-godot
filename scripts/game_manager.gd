@@ -13,15 +13,18 @@ func _ready():
 func _process(delta):
 	pass
 
+
 func win():
 	game_state = "win_screen"
 	get_node("../WinScreen").visible = true
 	get_node("../GameOver/AppearTimer").start()
-	
+
+
 func lose():
 	game_state = "lose_screen"
 	pass
-	
+
+
 func reset():
 	clear_tiles()
 	get_node("../Grid").create_tiles()
@@ -33,19 +36,22 @@ func reset():
 	get_node("../../Main").tiles_to_clear = []
 	
 	game_state = "playing"
-	
+
+
 func clear_tiles():
 	mines_placed = false
 	# Reset tiles
 	for tile in get_tree().get_nodes_in_group("tiles"):
 		tile.queue_free()
-	
+
+
 func go_to_main_menu():
 	game_state = "main_menu"
 	get_node("../../Main").display_menu()
 	get_node("../WinScreen").visible = false
 	get_node("../GameOver").visible = false
-	
+
+
 func open_game_menu():
 	# Choose difficulty level
 	clear_tiles()
@@ -54,7 +60,8 @@ func open_game_menu():
 	get_node("../GameMenu").visible = true
 	get_node("../CustomGameMenu").visible = true
 	get_node("../MainMenu").visible = false
-		
+
+
 func start_game(mode):
 	game_state = "playing"
 	var grid = get_node("../Grid")

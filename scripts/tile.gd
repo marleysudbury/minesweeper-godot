@@ -1,22 +1,24 @@
 extends Node2D
 
+signal explosion
+
 var flagged = false
 var question = false
 var mine = false
 var cleared = false
 var adjacent = "0"
 var distance_from_explosion = 0.0
-signal explosion
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_tile()
 
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
 
 func update_tile():
 	if mine:
@@ -40,6 +42,7 @@ func toggle_flag():
 		$FlagTexture.visible = true
 		flagged = true
 		
+
 func clicked_on():
 	if not flagged and not question and not cleared:
 		$TileTexture.visible = false
@@ -58,24 +61,29 @@ func clicked_on():
 			if adjacent == "0":
 				pass
 		
+
 func hover_on():
 	if not cleared and not flagged and not question:
 		$ClickTexture/ClickAnimation.play("hover_release")
 		$ClickTexture/ClickAnimation.seek(0)
 		
+
 func hover_off():
 	pass
 	#if $ClickTexture.visible:
 		#$ClickTexture.visible = false
 		
+
 func update_adjacent(n):
 	adjacent = str(n)
 	$NumberTexture.animation = adjacent
 	
+
 func set_distance_from_explosion(d):
 	distance_from_explosion = d
 	if d > 0:
 		$ExplosionTimer.wait_time = d / 100
+
 
 func _on_destroyed_tile_animation_finished():
 	$DestroyedTile.visible = false

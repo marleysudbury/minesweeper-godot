@@ -7,17 +7,21 @@ extends Camera2D
 var trauma = 0.0  # Current shake strength.
 var trauma_power = 2  # Trauma exponent. Use [2, 3].
 
+
 func _ready():
 	randomize()
 
+
 func add_trauma(amount):
 	trauma = min(trauma + amount, 0.7)
-	
+
+
 func _process(delta):
 	if trauma:
 		trauma = max(trauma - decay * delta, 0)
 		shake()
-	
+
+
 func shake():
 	var amount = pow(trauma, trauma_power)
 	rotation = max_roll * amount * randf_range(-1, 1)

@@ -6,10 +6,12 @@ var tiles_to_clear = []
 var clearning_bounds = Vector2(0.001, 0.002)
 var mines_remaining = 0
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	display_menu()
 	$Grid.scale = Vector2(tile_scale, tile_scale)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -19,6 +21,7 @@ func _process(delta):
 		$Grid.clear_hover()
 		if tile:
 			tile.hover_on()
+
 
 func _input(event):
 	if event.is_action_pressed("reset") and %GameManager.game_state == "playing":
@@ -54,7 +57,8 @@ func _input(event):
 			hovering = true
 		else:
 			$ClickSound.play()
-			
+
+
 func recursive_clearing(index):
 	if $RecursiveTimer.is_stopped():
 		$RecursiveTimer.wait_time = randf_range(clearning_bounds.x, clearning_bounds.y)
@@ -99,6 +103,7 @@ func recursive_clearing(index):
 		if not tiles[i+cols+1].cleared and not tiles[i+cols+1].mine:
 			tiles_to_clear.push_back(tiles[i+cols+1])
 
+
 func get_clicked_tile(coords, index = false):
 	for tile in get_tree().get_nodes_in_group("tiles"):
 			var x_diff = (coords.x - $Grid.position.x) / $Grid.scale.x - tile.position.x
@@ -110,17 +115,20 @@ func get_clicked_tile(coords, index = false):
 				else:
 					return tile
 
+
 func display_menu():
 	$MenuBackground.visible = true
 	$MainMenu.visible = true
-	
+
+
 func start_game():
 	#$Grid.set_dimensions(9,9)
 	$Grid.create_tiles()
 	$MenuBackground.visible = false
 	$GameMenu.visible = false
 	$CustomGameMenu.visible = false
-	
+
+
 func _on_explosions():
 	%GameManager.game_state = "lose"
 	$ExplosionSound.play()
@@ -145,7 +153,8 @@ func _on_explosions():
 			#shake_factor += 1
 			#$Camera2D.add_trauma(0.2)
 	#$Camera2D.shake()
-		
+
+
 func check_win():
 	# Check if player has won game
 	var covered_tiles = 0
@@ -155,6 +164,7 @@ func check_win():
 	if $Grid.number_of_mines == covered_tiles:
 		%GameManager.win()
 		$MusicManager/AnimationPlayer.play("Win")
+
 
 func _on_recursive_timer_timeout():
 	if len(tiles_to_clear) > 0 and $GameManager.game_state == "playing":
