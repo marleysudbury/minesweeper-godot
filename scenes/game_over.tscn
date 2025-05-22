@@ -1,23 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bboe8oflrhla1"]
+[gd_scene load_steps=3 format=3 uid="uid://bboe8oflrhla1"]
 
-[ext_resource type="Texture2D" uid="uid://bvj5u025oxsdm" path="res://assets/images/gameover.png" id="1_0swnj"]
-[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_rnep5"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i3vhi"]
-atlas = ExtResource("1_0swnj")
-region = Rect2(0, 9, 58, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3ji5c"]
-atlas = ExtResource("1_0swnj")
-region = Rect2(0, 27, 58, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ma2w"]
-atlas = ExtResource("1_0swnj")
-region = Rect2(0, 0, 58, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1g6we"]
-atlas = ExtResource("1_0swnj")
-region = Rect2(0, 18, 58, 9)
+[ext_resource type="Script" uid="uid://03uho5mo8vml" path="res://scripts/game_over.gd" id="1_rnep5"]
+[ext_resource type="Theme" uid="uid://bjwqc15mcbumy" path="res://my_theme.tres" id="2_wqhvx"]
 
 [node name="GameOver" type="MarginContainer"]
 anchors_preset = 15
@@ -39,18 +23,21 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(101.92, 0)
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_wqhvx")
 theme_override_constants/separation = 1
 
-[node name="Reset" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="Reset" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_i3vhi")
-texture_pressed = SubResource("AtlasTexture_3ji5c")
+size_flags_horizontal = 3
+text = "RESET"
 
-[node name="Exit" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="Exit" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_4ma2w")
-texture_pressed = SubResource("AtlasTexture_1g6we")
+size_flags_horizontal = 3
+text = "EXIT TO MENU"
 
 [node name="AppearTimer" type="Timer" parent="."]
 wait_time = 2.0

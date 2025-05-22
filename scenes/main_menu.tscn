@@ -1,40 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://7kunf6aab2ry"]
+[gd_scene load_steps=4 format=3 uid="uid://7kunf6aab2ry"]
 
 [ext_resource type="Texture2D" uid="uid://7pocc5p7iy12" path="res://assets/images/titlescreen.png" id="1_cht3p"]
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_hsxq2"]
-[ext_resource type="Texture2D" uid="uid://brexwr6f0frb" path="res://assets/images/menu.png" id="2_k1wl7"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oahk3"]
-atlas = ExtResource("2_k1wl7")
-region = Rect2(0, 0, 63, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gfkqq"]
-atlas = ExtResource("2_k1wl7")
-region = Rect2(0, 36, 63, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xu6vs"]
-atlas = ExtResource("2_k1wl7")
-region = Rect2(0, 9, 63, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rucex"]
-atlas = ExtResource("2_k1wl7")
-region = Rect2(0, 45, 63, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ik4k7"]
-atlas = ExtResource("2_k1wl7")
-region = Rect2(0, 18, 63, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5qbfb"]
-atlas = ExtResource("2_k1wl7")
-region = Rect2(0, 54, 63, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ixbnl"]
-atlas = ExtResource("2_k1wl7")
-region = Rect2(0, 27, 63, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x6w13"]
-atlas = ExtResource("2_k1wl7")
-region = Rect2(0, 63, 63, 9)
+[ext_resource type="Script" uid="uid://bk8agt3i2xu8k" path="res://scripts/main_menu.gd" id="1_hsxq2"]
+[ext_resource type="Theme" uid="uid://bjwqc15mcbumy" path="res://my_theme.tres" id="3_bqqt6"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -61,6 +29,7 @@ anchors_preset = 0
 offset_top = 43.0
 offset_right = 159.0
 offset_bottom = 89.0
+theme = ExtResource("3_bqqt6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -80,27 +49,25 @@ size_flags_vertical = 4
 theme_override_constants/separation = 1
 alignment = 1
 
-[node name="Play" type="TextureButton" parent="Control/VBoxContainer"]
+[node name="Play" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_oahk3")
-texture_pressed = SubResource("AtlasTexture_gfkqq")
-stretch_mode = 3
+focus_mode = 0
+text = "PLAY"
 
-[node name="Leaderboard" type="TextureButton" parent="Control/VBoxContainer"]
+[node name="Leaderboard" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_xu6vs")
-texture_pressed = SubResource("AtlasTexture_rucex")
-stretch_mode = 3
+focus_mode = 0
+text = "LEADERBOARD"
 
-[node name="Settings" type="TextureButton" parent="Control/VBoxContainer"]
+[node name="Settings" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_ik4k7")
-texture_pressed = SubResource("AtlasTexture_5qbfb")
+focus_mode = 0
+text = "SETTINGS"
 
-[node name="Exit" type="TextureButton" parent="Control/VBoxContainer"]
+[node name="Exit" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_ixbnl")
-texture_pressed = SubResource("AtlasTexture_x6w13")
+focus_mode = 0
+text = "EXIT TO DESKTOP"
 
 [connection signal="pressed" from="Control/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

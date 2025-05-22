@@ -101,9 +101,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c7jak"]
 _data = {
-"Lose": SubResource("Animation_3rlwr"),
-"RESET": SubResource("Animation_x0xm2"),
-"Win": SubResource("Animation_0gy8x")
+&"Lose": SubResource("Animation_3rlwr"),
+&"RESET": SubResource("Animation_x0xm2"),
+&"Win": SubResource("Animation_0gy8x")
 }
 
 [node name="MusicManager" type="Node"]
@@ -122,5 +122,5 @@ stream = ExtResource("3_3mnr4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_c7jak")
+&"": SubResource("AnimationLibrary_c7jak")
 }
