@@ -10,6 +10,8 @@ var mines_remaining = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	display_menu()
+	
+	$GameTimer.start()
 	$Grid.scale = Vector2(tile_scale, tile_scale)
 
 
@@ -178,3 +180,17 @@ func _on_recursive_timer_timeout():
 	else:
 		$RecursiveTimer.stop()
 		check_win()
+
+
+func _on_game_timer_timeout() -> void:
+	$Counter.count_up()
+	print("beep")
+	$GameTimer.start()
+
+
+func _on_counter_carry() -> void:
+	$Counter2.count_up()
+
+
+func _on_counter_2_carry() -> void:
+	$Counter3.count_up()
