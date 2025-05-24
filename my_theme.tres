@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bjwqc15mcbumy"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://bjwqc15mcbumy"]
 
 [ext_resource type="FontFile" uid="uid://cuocfvbh8x6m3" path="res://assets/fonts/my_font.ttf" id="1_djh02"]
 [ext_resource type="Texture2D" uid="uid://n1wnx34y4it1" path="res://assets/images/Box.png" id="2_hduts"]
 [ext_resource type="Texture2D" uid="uid://cc33cyefstld5" path="res://assets/images/Box_hover.png" id="2_kiwll"]
+[ext_resource type="Texture2D" uid="uid://8mjsi75pvqac" path="res://assets/images/Box-disabled.png" id="2_wncaf"]
 [ext_resource type="Texture2D" uid="uid://6mk37dvfyn6g" path="res://assets/images/Box_press.png" id="3_hduts"]
 
 [sub_resource type="FontVariation" id="FontVariation_kiwll"]
@@ -10,7 +11,12 @@ base_font = ExtResource("1_djh02")
 spacing_top = -3
 spacing_bottom = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wncaf"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iaxao"]
+texture = ExtResource("2_wncaf")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5r20o"]
 texture = ExtResource("3_hduts")
@@ -42,14 +48,16 @@ texture_margin_bottom = 2.0
 
 [resource]
 Button/colors/font_color = Color(0.384314, 0.329412, 0.396078, 1)
+Button/colors/font_disabled_color = Color(0.611765, 0.670588, 0.698039, 1)
 Button/colors/font_focus_color = Color(0.384314, 0.32549, 0.396078, 1)
 Button/colors/font_hover_color = Color(0.384314, 0.32549, 0.396078, 1)
 Button/colors/font_hover_pressed_color = Color(0.384314, 0.32549, 0.396078, 1)
 Button/colors/font_pressed_color = Color(0.384314, 0.32549, 0.396078, 1)
 Button/font_sizes/font_size = 8
 Button/fonts/font = SubResource("FontVariation_kiwll")
-Button/styles/disabled = SubResource("StyleBoxFlat_wncaf")
+Button/styles/disabled = SubResource("StyleBoxTexture_iaxao")
 Button/styles/focus = SubResource("StyleBoxTexture_5r20o")
 Button/styles/hover = SubResource("StyleBoxTexture_wncaf")
 Button/styles/normal = SubResource("StyleBoxTexture_6udjo")
 Button/styles/pressed = SubResource("StyleBoxTexture_kiwll")
+Label/fonts/font = ExtResource("1_djh02")

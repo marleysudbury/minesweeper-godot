@@ -35,6 +35,21 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
 
+[node name="GameTimer" type="Timer" parent="."]
+
+[node name="Clock" type="HBoxContainer" parent="."]
+offset_right = 56.0
+offset_bottom = 40.0
+
+[node name="Counter3" parent="Clock" instance=ExtResource("14_a8y0u")]
+layout_mode = 2
+
+[node name="Counter2" parent="Clock" instance=ExtResource("14_a8y0u")]
+layout_mode = 2
+
+[node name="Counter" parent="Clock" instance=ExtResource("14_a8y0u")]
+layout_mode = 2
+
 [node name="MenuBackground" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,15 +72,15 @@ offset_bottom = -20.0
 scale = Vector2(4, 4)
 
 [node name="CustomGameMenu" parent="." instance=ExtResource("6_dxa2y")]
-visible = false
+custom_minimum_size = Vector2(1.11, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 85.0
+offset_left = 82.845
 offset_top = -80.0
-offset_right = 85.0
+offset_right = 83.955
 offset_bottom = -80.0
 
 [node name="MainMenu" parent="." instance=ExtResource("7_iqnps")]
@@ -127,18 +142,7 @@ max_polyphony = 20
 
 [node name="MusicManager" parent="." instance=ExtResource("11_8xp4x")]
 
-[node name="Counter" parent="." instance=ExtResource("14_a8y0u")]
-position = Vector2(153, 104)
-
-[node name="Counter2" parent="." instance=ExtResource("14_a8y0u")]
-position = Vector2(134, 104)
-
-[node name="Counter3" parent="." instance=ExtResource("14_a8y0u")]
-position = Vector2(115, 104)
-
-[node name="GameTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="RecursiveTimer" to="." method="_on_recursive_timer_timeout"]
-[connection signal="carry" from="Counter" to="." method="_on_counter_carry"]
-[connection signal="carry" from="Counter2" to="." method="_on_counter_2_carry"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="carry" from="Clock/Counter2" to="." method="_on_counter_2_carry"]
+[connection signal="carry" from="Clock/Counter" to="." method="_on_counter_carry"]
+[connection signal="timeout" from="RecursiveTimer" to="." method="_on_recursive_timer_timeout"]

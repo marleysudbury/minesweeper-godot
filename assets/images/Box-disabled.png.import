@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2tyivgu0iewg"
-path="res://.godot/imported/7_down.png-2d312dbf14df8ff3a311d9a3a5741f11.ctex"
+uid="uid://8mjsi75pvqac"
+path="res://.godot/imported/Box-disabled.png-67eddaeb057098a9accef38c9d126a85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/7_down.png"
-dest_files=["res://.godot/imported/7_down.png-2d312dbf14df8ff3a311d9a3a5741f11.ctex"]
+source_file="res://assets/images/Box-disabled.png"
+dest_files=["res://.godot/imported/Box-disabled.png-67eddaeb057098a9accef38c9d126a85.ctex"]
 
 [params]
 

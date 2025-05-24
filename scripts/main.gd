@@ -10,8 +10,6 @@ var mines_remaining = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	display_menu()
-	
-	$GameTimer.start()
 	$Grid.scale = Vector2(tile_scale, tile_scale)
 
 
@@ -46,6 +44,7 @@ func _input(event):
 			var tile = get_clicked_tile(event.position)
 			if tile and not tile.cleared:
 				if not %GameManager.mines_placed:
+					$GameTimer.start()
 					$Grid.place_mines(get_clicked_tile(event.position, true))
 					%GameManager.mines_placed = true
 				tile.clicked_on()
@@ -124,6 +123,9 @@ func display_menu():
 
 
 func start_game():
+	$Clock/Counter.reset()
+	$Clock/Counter2.reset()
+	$Clock/Counter3.reset()
 	#$Grid.set_dimensions(9,9)
 	$Grid.create_tiles()
 	$MenuBackground.visible = false
@@ -132,6 +134,7 @@ func start_game():
 
 
 func _on_explosions():
+	$GameTimer.stop()
 	%GameManager.game_state = "lose"
 	$ExplosionSound.play()
 	$MusicManager/AnimationPlayer.play("Lose")
@@ -164,6 +167,7 @@ func check_win():
 		if not tile.cleared:
 			covered_tiles += 1
 	if $Grid.number_of_mines == covered_tiles:
+		$GameTimer.stop()
 		%GameManager.win()
 		$MusicManager/AnimationPlayer.play("Win")
 
@@ -183,14 +187,14 @@ func _on_recursive_timer_timeout():
 
 
 func _on_game_timer_timeout() -> void:
-	$Counter.count_up()
+	$Clock/Counter.count_up()
 	print("beep")
 	$GameTimer.start()
 
 
 func _on_counter_carry() -> void:
-	$Counter2.count_up()
+	$Clock/Counter2.count_up()
 
 
 func _on_counter_2_carry() -> void:
-	$Counter3.count_up()
+	$Clock/Counter3.count_up()

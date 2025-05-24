@@ -1,7 +1,7 @@
 [gd_scene load_steps=86 format=3 uid="uid://cucj0lwh3vwfu"]
 
 [ext_resource type="Script" uid="uid://cthv3h0qi3ckg" path="res://scripts/counter.gd" id="1_yttel"]
-[ext_resource type="Texture2D" uid="uid://cpdxnvtrv1tv0" path="res://assets/images/timer_sprites.png" id="9_u6cvs"]
+[ext_resource type="Texture2D" uid="uid://c0xeyqxd17xt6" path="res://assets/images/timer_sprites.png" id="9_u6cvs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eimq6"]
 atlas = ExtResource("9_u6cvs")
@@ -585,10 +585,16 @@ animations = [{
 "speed": 24.0
 }]
 
-[node name="Counter" type="Node2D"]
+[node name="Counter" type="Control"]
+custom_minimum_size = Vector2(16, 22)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 22.0
 script = ExtResource("1_yttel")
 
 [node name="Flipper" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rn2ui")
+centered = false
 
 [connection signal="frame_changed" from="Flipper" to="." method="_on_flipper_frame_changed"]

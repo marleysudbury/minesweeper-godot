@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c02oe34wijr1u"
-path="res://.godot/imported/timers-top.png-6b28b942ce405af91b9599dc157fad52.ctex"
+uid="uid://buxw3eosyh46k"
+path="res://.godot/imported/1_up.png-f9489f766d543ced2b51a5d398f11dd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/timers-top.png"
-dest_files=["res://.godot/imported/timers-top.png-6b28b942ce405af91b9599dc157fad52.ctex"]
+source_file="res://assets/images/deprecated/1_up.png"
+dest_files=["res://.godot/imported/1_up.png-f9489f766d543ced2b51a5d398f11dd9.ctex"]
 
 [params]
 

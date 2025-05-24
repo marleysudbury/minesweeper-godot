@@ -57,17 +57,66 @@ text = "PLAY"
 [node name="Leaderboard" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
+disabled = true
 text = "LEADERBOARD"
 
 [node name="Settings" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
+disabled = true
 text = "SETTINGS"
 
 [node name="Exit" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 text = "EXIT TO DESKTOP"
+
+[node name="LinkVersion" type="Label" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 29.0
+offset_right = 214.0
+offset_bottom = 52.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_bqqt6")
+theme_override_colors/font_color = Color(0.827451, 0.392157, 0.498039, 1)
+theme_override_constants/line_spacing = -1
+theme_override_constants/paragraph_spacing = -2
+theme_override_font_sizes/font_size = 8
+text = "https://github.com/marleysudbury/minesweeper-godot
+
+PRE-RELEASE VERSION"
+
+[node name="Credits" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 67.0
+offset_right = 74.0
+offset_bottom = 115.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_bqqt6")
+theme_override_colors/font_color = Color(0.827451, 0.392157, 0.498039, 1)
+theme_override_constants/line_spacing = -1
+theme_override_constants/paragraph_spacing = 3
+theme_override_font_sizes/font_size = 8
+text = "DEVELOPER: Marley Sudbury
+THANKS TO: https://yal.cc/tools/pixel-font/"
+autowrap_mode = 2
+
+[node name="Warning" type="Label" parent="."]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 60.0
+offset_right = 168.0
+offset_bottom = 90.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_bqqt6")
+theme_override_colors/font_color = Color(0.827451, 0.392157, 0.498039, 1)
+theme_override_constants/line_spacing = -1
+theme_override_constants/paragraph_spacing = 3
+theme_override_font_sizes/font_size = 8
+text = "*LEADERBOARD and SETTINGS coming soon!*"
+autowrap_mode = 2
 
 [connection signal="pressed" from="Control/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

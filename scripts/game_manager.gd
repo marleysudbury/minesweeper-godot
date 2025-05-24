@@ -34,6 +34,9 @@ func reset():
 	get_node("../WinScreen").visible = false
 	get_node("../GameOver").visible = false
 	get_node("../../Main").tiles_to_clear = []
+	get_node("../Clock/Counter").reset()
+	get_node("../Clock/Counter2").reset()
+	get_node("../Clock/Counter3").reset()
 	
 	game_state = "playing"
 

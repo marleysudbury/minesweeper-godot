@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 signal carry
 var current = 0
@@ -23,8 +23,14 @@ func flapback():
 	rewind = true
 	$Flipper.speed_scale=-10
 	$Flipper.play()
+	
+func reset():
+	current = 0
+	flapback()
 
 
 func _on_flipper_frame_changed() -> void:
 	if $Flipper.frame % 9 == 0 and !rewind:
+		$Flipper.pause()
+	if $Flipper.frame == 0 and rewind:
 		$Flipper.pause()

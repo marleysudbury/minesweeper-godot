@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8f5hckn6kc78"
-path="res://.godot/imported/timer_bottom.png-bdcce7cfa3630bc91fb395496dcbdd16.ctex"
+uid="uid://c2tg8nbpynejo"
+path="res://.godot/imported/timers-wheels.png-c7e200ac9253899855531aa33be47746.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/timer_bottom.png"
-dest_files=["res://.godot/imported/timer_bottom.png-bdcce7cfa3630bc91fb395496dcbdd16.ctex"]
+source_file="res://assets/images/deprecated/timers-wheels.png"
+dest_files=["res://.godot/imported/timers-wheels.png-c7e200ac9253899855531aa33be47746.ctex"]
 
 [params]
 
