@@ -11,6 +11,7 @@ var mines_remaining = 0
 func _ready():
 	display_menu()
 	$Grid.scale = Vector2(tile_scale, tile_scale)
+	mines_remaining = $Grid.number_of_mines
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,6 +38,21 @@ func _input(event):
 		var tile = get_clicked_tile(event.position)
 		if tile:
 			tile.toggle_flag()
+			# Adjust mine counter
+			if tile.flagged:
+				mines_remaining -= 1
+			elif tile.question:
+				mines_remaining += 1
+			if tile.flagged or tile.question:
+				# Set mine counter
+				print(mines_remaining)
+				var units = (mines_remaining % 10)
+				var tens = ((mines_remaining % 100) - units) / 10
+				var hundreds = ((mines_remaining % 1000) - tens - units) / 100
+				print(hundreds, tens, units)
+				get_node("Minecounter/MCounter").go_to_animate(units, 3)
+				get_node("Minecounter/MCounter2").go_to_animate(tens, 3)
+				get_node("Minecounter/MCounter3").go_to_animate(hundreds, 3)
 	elif event.is_action_released("primary_click"):
 		if %GameManager.game_state == "playing":
 			hovering = false
@@ -131,6 +147,7 @@ func start_game():
 	$MenuBackground.visible = false
 	$GameMenu.visible = false
 	$CustomGameMenu.visible = false
+	
 
 
 func _on_explosions():

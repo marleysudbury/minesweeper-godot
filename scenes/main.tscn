@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://pvrgrv7w5asj"]
+[gd_scene load_steps=16 format=3 uid="uid://pvrgrv7w5asj"]
 
 [ext_resource type="Script" uid="uid://cxvac44s7xxo5" path="res://scripts/main.gd" id="1_fwbb1"]
 [ext_resource type="PackedScene" uid="uid://kukoxby030re" path="res://scenes/grid.tscn" id="2_2ufes"]
 [ext_resource type="PackedScene" uid="uid://cgyqikrrva0oc" path="res://scenes/game_manager.tscn" id="2_hhs6u"]
 [ext_resource type="Script" uid="uid://56uqtjnbko0k" path="res://scripts/camera_shake.gd" id="3_j7wsq"]
+[ext_resource type="Theme" uid="uid://bjwqc15mcbumy" path="res://my_theme.tres" id="5_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://cr1nj2oo7avbh" path="res://assets/images/win_screen.png" id="5_rm5ux"]
 [ext_resource type="PackedScene" uid="uid://1ovx42mdaudq" path="res://scenes/custom_game_menu.tscn" id="6_dxa2y"]
 [ext_resource type="PackedScene" uid="uid://cobnv60ocyo2m" path="res://scenes/game_menu.tscn" id="6_hj6cu"]
@@ -38,8 +39,18 @@ scale = Vector2(4, 4)
 [node name="GameTimer" type="Timer" parent="."]
 
 [node name="Clock" type="HBoxContainer" parent="."]
-offset_right = 56.0
-offset_bottom = 40.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 128.0
+offset_bottom = 50.0
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="Label" type="Label" parent="Clock"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_jkv2x")
+text = "TIME: "
 
 [node name="Counter3" parent="Clock" instance=ExtResource("14_a8y0u")]
 layout_mode = 2
@@ -48,6 +59,29 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Counter" parent="Clock" instance=ExtResource("14_a8y0u")]
+layout_mode = 2
+
+[node name="Minecounter" type="HBoxContainer" parent="."]
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 118.0
+offset_bottom = 80.0
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="Label" type="Label" parent="Minecounter"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_jkv2x")
+text = "MINES: "
+
+[node name="MCounter3" parent="Minecounter" instance=ExtResource("14_a8y0u")]
+layout_mode = 2
+
+[node name="MCounter2" parent="Minecounter" instance=ExtResource("14_a8y0u")]
+layout_mode = 2
+
+[node name="MCounter" parent="Minecounter" instance=ExtResource("14_a8y0u")]
 layout_mode = 2
 
 [node name="MenuBackground" type="ColorRect" parent="."]

@@ -38,6 +38,17 @@ func reset():
 	get_node("../Clock/Counter2").reset()
 	get_node("../Clock/Counter3").reset()
 	
+	
+	var mines_remaining = get_node("../Grid").number_of_mines
+	get_node("../../Main").mines_remaining = mines_remaining
+	# Set mine counter
+	var units = (mines_remaining % 10)
+	var tens = ((mines_remaining % 100) - units) / 10
+	var hundreds = ((mines_remaining % 1000) - tens - units) / 100
+	get_node("../Minecounter/MCounter").go_to_animate(units, 3)
+	get_node("../Minecounter/MCounter2").go_to_animate(tens, 3)
+	get_node("../Minecounter/MCounter3").go_to_animate(hundreds, 3)
+	
 	game_state = "playing"
 
 
@@ -103,4 +114,17 @@ func start_game(mode):
 	grid.scale = Vector2(scale_factor, scale_factor)
 	grid.set_dimensions(cols, rows)
 	grid.set_n_mines(mines)
+	
+	# Set mine counter
+	get_node("../../Main").mines_remaining = mines
+	var units = (mines % 10)
+	var tens = ((mines % 100) - units) / 10
+	var hundreds = ((mines % 1000) - tens - units) / 100
+	get_node("../Minecounter/MCounter").go_to(0)
+	get_node("../Minecounter/MCounter2").go_to(0)
+	get_node("../Minecounter/MCounter3").go_to(0)
+	get_node("../Minecounter/MCounter").go_to_animate(units, 3)
+	get_node("../Minecounter/MCounter2").go_to_animate(tens, 3)
+	get_node("../Minecounter/MCounter3").go_to_animate(hundreds, 3)
+	
 	main.start_game()
