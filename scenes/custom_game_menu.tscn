@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://1ovx42mdaudq"]
+[gd_scene load_steps=2 format=3 uid="uid://1ovx42mdaudq"]
+
+[ext_resource type="Theme" uid="uid://bjwqc15mcbumy" path="res://my_theme.tres" id="1_wilx1"]
 
 [node name="CustomGameMenu" type="Control"]
 layout_mode = 3
@@ -7,21 +9,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_wilx1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 visible = false
 layout_mode = 0
-offset_right = 100.0
-offset_bottom = 100.0
 
 [node name="TextBoxes" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 205.0
-offset_bottom = 150.0
+offset_right = 164.0
+offset_bottom = 115.0
+theme_override_constants/separation = 3
 
 [node name="Label" type="Label" parent="TextBoxes"]
 layout_mode = 2
-text = "Set custom variables "
+text = "SET CUSTOM VARIABLES"
 
 [node name="ColText" type="TextEdit" parent="TextBoxes"]
 layout_mode = 2
